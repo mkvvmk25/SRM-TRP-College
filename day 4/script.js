@@ -196,7 +196,6 @@ syntax
 //   return a ** a;
 // };
 
-let sq = (a, b) => a * b;
-
-let d = sq(4, 6);
-console.log(d);
+// let sq = (a, b) => a * b;
+// let d = sq(4, 6);
+// console.log(d);
