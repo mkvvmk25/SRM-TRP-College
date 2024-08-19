@@ -14,12 +14,7 @@ int linearSearchArr(int *ptr, int n, int ele)
     }
     return -1;
 }
-// //          5,5
-// //          4,5
-// //          3,5
-// //         2,5
-// //         1,5
-// //         0,5
+
 int fun(int *ptr, int i, int n, int ele)
 {
     if(i == n)
@@ -38,26 +33,25 @@ int fun(int *ptr, int i, int n, int ele)
 
 int main()
 {
-    // searching algo 
-        // linear 
-            // arr will unsorted 
-            // iterative way 
-                // loops 
-            // recurive 
-                // funcs
-        // binary 
-            //  arr will sorted 
+    // // searching algo 
+    //     // linear 
+    //         // arr will unsorted 
+    //         // iterative way 
+    //             // loops 
+    //         // recurive 
+    //             // funcs
+    //     // binary 
+    //         //  arr will sorted 
 
-    int arr[5] = {4,8,6,1,0};
-    int n = 5; 
-    int seEle = 0; 
-    int ind = fun(arr, 0, n, seEle); 
-    //  0,5
+    // int arr[5] = {4,8,6,1,0};
+    // int n = 5; 
+    // int seEle = 0; 
+    // int ind = fun(arr, 0, n, seEle); 
+    // //  0,5
 
-    // int ind = linearSearchArr(arr, n, seEle ); 
+    // // int ind = linearSearchArr(arr, n, seEle ); 
 
-    // // int *ptr = arr;
-    printf("%d",ind);
+    // // // int *ptr = arr;
+    // printf("%d",ind);
 }
 
-https://bit.ly/WE-190824 
