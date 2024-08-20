@@ -100,11 +100,78 @@ void timeNlogN(int n) // 8
     // n * log(n)
 }
 
-int main()
+void merge(int *arr,int n,int low,int high,int mid)
 {
-    int arr[5] = {5,4,3,2,1};
-    int n = 5; 
-    bubbleSort(arr, n);
+    int leftsize = mid - low + 1;
+    int rightsize = high - mid;
+    int leftArr[leftsize];
+    int rightArr[rightsize];
+
+    int ind = low; 
+    for(int j = 0; j < leftsize; j++)
+    {
+        leftArr[j] = arr[ind];
+        ind++;
+    }
+    for(int j = 0; j < rightsize; j++)
+    {
+        rightArr[j] = arr[ind];
+        ind++;
+    }
+
+    int ith = 0;
+    int jth = 0; 
+    int kth = low; 
+
+    while( ith < leftsize && 
+                jth < rightsize )
+    {
+        if(leftArr[ith] < rightArr[jth])
+        {
+            arr[kth] = leftArr[ith];
+            kth++;
+            ith++;
+        }
+        else 
+        {
+            arr[kth] = rightArr[jth];
+            kth++;
+            jth++;
+        }
+    }
+
+
+    // pending elems 
+    while(ith < leftsize4)
+    {
+        arr[kth] = leftArr[ith];
+        kth++;
+        ith++;
+    }
+    while(jth < rightsize)
+    {
+        arr[kth] = rightArr[jth];
+        kth++;
+        jth++;
+    }
+}
+void mergeSort(int *arr, int n, int low, int high)
+{
+    if(low < high)
+    {
+        int mid = (low + high) / 2; // 3
+        mergeSort(arr, n, low, mid ); 
+        mergeSort(arr, n, mid+1, high); 
+        merge(arr, n, low, high, mid); 
+    }
+    // return; 
 }
 
-// https://bit.ly/CC-200824 
+int main()
+{
+    int arr[5] = {5,6,7,8,4,3,2,1};
+    int n = 8; 
+    int low = 0;
+    int high = n - 1; 
+    mergeSort(arr, n, low, high);
+}
