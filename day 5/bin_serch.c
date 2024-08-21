@@ -142,7 +142,7 @@ void merge(int *arr,int n,int low,int high,int mid)
 
 
     // pending elems 
-    while(ith < leftsize4)
+    while(ith < leftsize)
     {
         arr[kth] = leftArr[ith];
         kth++;
@@ -155,6 +155,7 @@ void merge(int *arr,int n,int low,int high,int mid)
         jth++;
     }
 }
+
 void mergeSort(int *arr, int n, int low, int high)
 {
     if(low < high)
@@ -167,11 +168,106 @@ void mergeSort(int *arr, int n, int low, int high)
     // return; 
 }
 
+void swap(int *a, int *b )
+{
+    int t = *a; 
+    *a = *b; 
+    *b = t;
+}
+
+
+int partition(int *arr, int n, int low, int high)
+{
+    int pe = arr[low]; 
+    int start = low; 
+    int end = high; 
+    while(start < end)
+    {
+        while(arr[start] <= pe)
+        {
+            start++;
+        }
+        while(arr[end] > pe)
+        {
+            end--; 
+        }
+        if(start < end)
+        {
+            swap(&arr[start], &arr[end]); 
+        }
+    }
+
+    swap(&arr[end], &arr[low]); 
+    return end; 
+}
+
+
+void quickSort(int *arr, int n, int low, int high)
+{
+    if(low < high)
+    {
+        int mid = partition(arr, n, low,high); // 4 
+        quickSort(arr, n, low, mid-1 ); 
+        quickSort(arr, n, mid+1, high);
+    }
+}
+
+int minswapsfor012(int *arr, int n)
+{
+    int scnt = 0; 
+    int t = 0 , s = 0, e = n - 1; 
+    while(t <= e)
+    {
+        if(t == 1)
+        {
+            t++;
+        }
+        else if(t== 0)
+        {
+            swap(&arr[s], &arr[e]);
+            scnt++;
+            s++;
+            t++;
+        }
+        
+        else if(t == 2)
+        {
+            swap(&arr[t] , &arr[e]);
+            scnt++;
+            e--;
+        } 
+    }
+    return scnt; 
+}
+
 int main()
 {
-    int arr[5] = {5,6,7,8,4,3,2,1};
-    int n = 8; 
-    int low = 0;
-    int high = n - 1; 
-    mergeSort(arr, n, low, high);
+    int arr[8] = {2,1,0,1,0,2,1,1,0};
+
+/*  0 1 2 3 4 5 6 7 8 9  
+
+    0 0 0 0 1 1 1 1 2 2
+    s                 e
+    t
+
+    while(t <= e)
+        t == 1
+            t++
+        t== 0
+            swap(se, te)
+            s++
+            t++
+        t == 2 
+            swap(te , ee)
+            e--
+
+ */
+
+    // 0 0 0 0 1 1 1 1 2 2
+
+    // bubble  n^2 
+    // merge sort  n log n 
+    // approch  n
+    // log n 
+    // 1 
 }
