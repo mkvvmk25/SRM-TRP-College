@@ -17,7 +17,7 @@ struct Node* createNewNode(int val)
     return ptr; 
 }
 
-void insertNodeInEnd(struct Node **head,
+void enqueue(struct Node **head,
         int val)
 {
     // to create a node 
@@ -43,26 +43,8 @@ void insertNodeInEnd(struct Node **head,
 
 }
 
-void insertNodeInFront(struct Node **head,
-        int val)
-{
-    // to create a node 
-    struct Node *newNode = createNewNode(val); // 2001
 
-    if(*head == NULL)
-    {
-        // this tell linked list is empty 
-        *head = newNode; 
-    }
-    else 
-    {
-        newNode->nextAddress = *head; 
-        *head = newNode; 
-    }
-}
-
-
-void deleteNodeInEnd(struct Node **head )
+void dequeue(struct Node **head )
 {
     // 1
     if(*head == NULL)
@@ -74,33 +56,7 @@ void deleteNodeInEnd(struct Node **head )
     {
         *head = NULL; 
     }
-    // 3 
     else 
-    {
-        struct Node *temp = *head; 
-        while(temp->nextAddress->nextAddress != NULL)
-        {
-            temp = temp->nextAddress; 
-        }
-
-        // t = a2 
-        temp->nextAddress = NULL; 
-    }
-}
-
-void deleteNodeInBeg(struct Node **head )
-{
-    // 1
-    if(*head == NULL)
-    {
-        printf("no ele is there"); 
-    }
-    // 2
-    else if( (*head)->nextAddress == NULL) 
-    {
-        *head = NULL; 
-    }
-    else
     {
         struct Node *temp = *head;
         *head = (*head)->nextAddress; 
@@ -119,6 +75,7 @@ void printLL(struct Node **head)
     }
     printf("\n");
 }
+
 int main()
 {
     struct Node *linkhead1 = NULL; 
