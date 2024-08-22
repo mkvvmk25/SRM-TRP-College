@@ -87,12 +87,97 @@ int validPara(char *arr)
         return 1; 
     }
 } 
+
+int rank(char c)
+{
+    if(c == '+' || c == '-')
+    {
+        return 2; 
+    }
+    if(c == '*' || c == '/' || c == '%')
+    {
+        return 3; 
+    }
+
+}
+
+void inftopost(char *arr)
+{
+    char post[50];
+    int p_ind = -1;  
+    char stack[50]; 
+    int top = -1; 
+    int len = strlen(arr);
+
+    for(int i = 0; i < len; i++)
+    {
+        // if see a oprand 
+        // add in post 
+        if(arr[i] >= 'a' && arr[i] <= 'z')
+        {
+            p_ind++; 
+            post[p_ind] = arr[i]; 
+        }
+        else 
+        {
+            // ( 
+             if(arr[i] == '(')
+             {
+                top++; 
+                stack[top] = arr[i]; 
+             }
+             else if(arr[i] == ')')
+             {
+                // pop untill open para 
+                while( stack[top] != '(' )
+                {
+                    p_ind++;
+                    post[p_ind] = stack[top]; 
+                    top--;
+                }
+                top--;
+             }
+             else 
+             {
+                // int topEleRank = rank(stack[top]);
+                int incEleRank = rank(arr[i]);
+
+                while(  top != -1 
+                        && 
+                        stack[top] != '(' 
+                        &&  
+                        rank(stack[top]) >= incEleRank)
+                {
+                    p_ind++;
+                    post[p_ind] = stack[top]; 
+                    top--;
+                }
+                // ele insert
+                top++;
+                stack[top] = arr[i]; 
+
+             }
+            
+        }
+    }
+
+    // if stack is not empt 
+    while(  top != -1 )
+    {
+        p_ind++;
+        post[p_ind] = stack[top]; 
+        top--;
+    }
+
+    printf("%s",post); 
+}
+
 int main()
 {
-    char arr[50] = "({})[{}]"; 
-    int ans = validPara(arr); 
-    printf("%d", ans); 
+ 
+    char arr[50] = "a*(b+c)/(d-e)*f%g+h";
 
-    // a*(b+c)/(d-e)*f%g+h
-    // 
+    inftopost(arr); 
+   
+
 }
