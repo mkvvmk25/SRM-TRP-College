@@ -70,7 +70,24 @@ int heighttree(struct TreeNode *root)
     }
     return lh + 1; 
 }
-//  https://bit.ly/RA-230824 
+int diaHeighttree(struct TreeNode *root, int *maxAdd)
+{
+    if(root == NULL){
+        return 0; 
+    }
+    int lh = diaHeighttree(root->leftAdd, maxAdd);
+    int rh = diaHeighttree(root->rightAdd, maxAdd);  
+
+    if(*maxAdd   <    lh+rh+1)
+    {
+        *maxAdd = lh+rh+1; 
+    }
+
+    if(lh < rh){
+        return rh + 1; 
+    }
+    return lh + 1; 
+}
 
 
 void preorder(
@@ -114,6 +131,10 @@ int main()
 
     bfs(a); 
     inorder(a);
+
+    int max = 0; 
+    diaHeighttree(a, &max);
+    printf("%d",max);  
 
 
 
